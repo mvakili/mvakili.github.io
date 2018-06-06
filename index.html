@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Muhammad Vakili</title>
@@ -14,15 +15,17 @@
 <body class=>
     <div id="app">
         <section class="section">
-            <div class="columns ">
-                <div class="column is-3"></div>
-                <div class="column is-half">
-                    <div class="container">
-                        <h1 class="title" v-html="title">
-                        </h1>
-                        <p class="subtitle">
-                            {{ author }}
-                        </p>
+            <div class="container">
+                <div class="columns ">
+                    <div class="column is-3"></div>
+                    <div class="column is-half">
+                        <div class="container">
+                            <h1 class="title" v-html="title">
+                            </h1>
+                            <p class="subtitle">
+                                {{ author }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,9 +44,9 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="content">
-                                        <p >Programmer @
+                                        <p>Programmer @
                                             <a href="http://parlar.ir/">
-                                                <i class="fa fa-industry" aria-hidden="true"></i> Parlar 
+                                                <i class="fa fa-industry" aria-hidden="true"></i> Parlar
                                             </a> since May 2016
                                         </p>
                                     </div>
@@ -87,35 +90,52 @@
             </div>
         </section>
         <section class="is-medium">
-            <div class="columns is-multiline ">
-                <template v-for="item in abilities">
-                    <div class="column is-half">
-                        <div class="card ">
-                            <header class="card-header">
-                                <p class="card-header-title ">
-                                    {{item.title}}
-                                </p>
-                                <a href="#" class="card-header-icon" aria-label="more options">
-                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                            </header>
-                            <div class="card-content">
-                                <div class="content" v-html="item.describe">
+            <div class="container">
+                <h1>
+                    Skills
+                </h1>
+                <div class="columns is-multiline ">
+                    <template v-for="item in mainSkills">
+                        <div class="column is-half">
+                            <div class="card ">
+                                <header class="card-header">
+                                    <p class="card-header-title ">
+                                        {{item.title}}
+                                    </p>
+                                </header>
+                                <div class="card-content">
+                                    <div class="content" v-html="item.describe">
+                                    </div>
+                                    <footer class="card-footer">
+                                        <progress class="progress" v-bind:class="item.color" v-bind:value="item.knowing" max="100">60%</progress>
+                                    </footer>
                                 </div>
-                                <footer class="card-footer">
-                                    <progress class="progress" v-bind:class="item.color" v-bind:value="item.knowing" max="100">60%</progress>
-                                </footer>
                             </div>
-                        </div>
-                </template>
+                    </template>
+                    </div>
                 </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="content">
+
+                </div>
+            </div>
         </section>
         <footer class="footer">
             <div class="container">
+                <h1>
+                    Other Skills
+                </h1>
                 <div class="content has-text-centered">
-                    <p>
-
-                    </p>
+                    <div class="field is-grouped is-grouped-multiline">
+                        <div class="control" v-for="item in otherSkills">
+                            <div class="tags has-addons">
+                                <span class="tag is-dark">{{item.title}}</span>
+                                <span class="tag" :class="item.color">{{item.describe}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -128,13 +148,26 @@
         data: {
             title: '<i class="far fa-heart has-text-danger"></i>  to write clean <i class="fas fa-code has-text-warning"></i>',
             author: 'Muhammad Vakili',
-            abilities: [
-                { title: 'dotnet core', describe: 'I\'m familiar with <strong>dotnet framework</strong> from spring of 2014, it seems so useful and easy to understand. i wrote most of my university exams and project using <strong> C# </strong>.<br>I\'ve started to learn <strong>dotnet core web api</strong> and <strong>Rest api</strong> from beginnig of 2017. I\'m so comfortable with it.', knowing: 50, color: "is-danger" },
-                { title: 'Relational database design', describe: 'I\'ve started database with <strong>MySql</strong> in my earlier projects.<br>I remember those days that i have no idea about relations, joins, triggers, any nested queries, indexes and ...<br>I have learned how database works, how to draw ER diagrams, how to understand execution plans, how to write correct queries in our <strong>Database basics</strong> course with <strong>Dr. Mohammadreza Feizi Derakhshi</strong>. i experienced working with a big databases with dozens of gigabytes of important and sensitive data.', knowing: 80, color: "" },
-                { title: 'Vue Js', describe: 'I\'ve started to learn vue js after faced with lots of complexities of <strong>Angular 2</strong>+.<br>Vue js is an amazing framework, simple, and easy to learn.<br>I am beginner, but i love to have some experiences with <strong>Vue JS </strong>  <i class="fa fa-heart has-text-danger" aria-hidden="true"></i>', knowing: 60, color: "is-success" },
-                { title: 'Bulma', describe: 'I used <strong> Vue Admin template </strong> in one of my projects. this template uses <strong>bulma</strong>.<br> it is so lightweight and simple, based on <strong>Flexbox</strong>', knowing: 30, color: "is-warning" },
+            mainSkills: [
+                { title: 'Vue Js', describe: 'I\'ve started to learn vue js after faced with lots of complexities of <strong>Angular 2</strong>+.<br>Vue js is an amazing framework, simple, and easy to learn.<br>I am beginner, but I love to have some experiences with <strong>Vue JS </strong>  <i class="fa fa-heart has-text-danger" aria-hidden="true"></i>', knowing: 60, color: "is-success" },
+                { title: 'dotnet core', describe: 'I\'m familiar with <strong>dotnet framework</strong> from spring of 2014, it seems so useful and easy to understand. I have wrote most of my university exams like <a href="https://github.com/mvakili/EKA">EKA Warehouse Managing System</a> and projects using <strong> C# </strong>.<br>I\'ve started to learn <strong>dotnet core web api</strong> and <strong>Rest api</strong> from beginnig of 2017. I\'m so comfortable working with that', knowing: 50, color: "is-danger" },
+                { title: 'Relational database design', describe: 'I\'ve started database with <strong>MySql</strong> in my earlier projects.<br>I remember those days that I had no idea about relations, joins, triggers, any nested queries, indexes and ...<br>I have learned how database works, how to draw ER diagrams, how to understand execution plans, how to write correct queries in our <strong>Database </strong> course with <strong>Dr. Mohammadreza Feizi Derakhshi</strong>. I have experienced working with a big databases with dozens of gigabytes of important and sensitive data and challenges come from it\'s usage.', knowing: 80, color: "" },
+                { title: 'Bulma', describe: 'I\'m using <a href="https://bulma.io"><strong> Bulma </strong></a> in <a href="https://github.com/mvakili/hesabdar">Hesabdar Project</a>.<br> It is so lightweight and simple, based on <strong>Flexbox</strong>', knowing: 30, color: "is-warning" },
+            ],
+            otherSkills: [
+                { title: 'Angular 2+', describe: '40%', color: 'is-danger' },
+                { title: 'Software System Analyze', describe: '70%', color: 'is-link' },
+                { title: 'Entity Framework', describe: '80%', color: 'is-success' },
+                { title: 'Javascript ES5/ES6', describe: '70%', color: 'is-warning' },
+                { title: 'C# Windows form', describe: '80%', color: 'is-info' },
+                { title: 'Verilog HDL Design', describe: '70%', color: 'is-primary' },
+                { title: 'Teaching', describe: '60%', color: 'is-warning' },
+                { title: 'Teamwork', describe: '60%', color: 'is-danger' },
+                { title: 'PHP Pure', describe: '70%', color: 'is-info' },
+                { title: 'C / C++', describe: '70%', color: 'is-link' }
             ]
         }
     })
 </script>
+
 </html>
